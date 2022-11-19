@@ -1,0 +1,15 @@
+{
+  "name": "places",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "keywords": [],
+  "author": "Maxim Muratov",
+  "license": "ISC",
+  "devDependencies": {
+    "electron": "^21.3.0"
+  }
+}
