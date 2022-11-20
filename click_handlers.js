@@ -24,6 +24,20 @@ function getPlaces() {
     http.send()
 }
 
+function onItemClickListener(latitude, longitude) {
+    const http = new XMLHttpRequest()
+    http.onreadystatechange = function() {
+        if(http.readyState === 4 && http.status === 200) {
+            const response = JSON.parse(http.response)
+            getWeather(response)
+        }
+    }
+    const url = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}`+
+        `&lon=${longitude}&units=metric&lang=ru&appid=afab9125bd210e10cb512ce5631fbf50`
+    http.open("GET", url)
+    http.send()
+}
+
 function clearPlaceHints() {
     const items = document.getElementsByClassName(suggestionClassName)
     for(let index = 0; index <= items.length - 1; index++) {
@@ -72,5 +86,7 @@ function onTyping(response, hitList) {
     }
     hitList.hidden = false
 }
+
+function getWeather(response) {
 
 }
