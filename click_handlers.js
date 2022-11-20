@@ -88,5 +88,9 @@ function onTyping(response, hitList) {
 }
 
 function getWeather(response) {
-
+    const main = response.main
+    document.getElementById('temperature').textContent = main.temp
+    document.getElementById('feels_like').textContent = main.feels_like
+    document.getElementById('humidity').textContent = main.humidity
+    document.getElementById('pressure').textContent = main.pressure
 }

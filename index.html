@@ -7,15 +7,23 @@
     <title>Геознаток</title>
 </head>
 <body>
-    <script type="text/javascript" src="click_handlers.js"></script>
-    <h1>Поиск интересных мест</h1>
+<script type="text/javascript" src="click_handlers.js"></script>
+<h1>Поиск интересных мест</h1>
 
-    <div class="vert">
-            <label for="input_place"></label>
-            <input id="input_place" class="placeInput"
-                   placeholder="Поиск локации" onkeydown="getPlaces()">
-        <ul id="hit_list" class="placeSuggestionList" hidden></ul>
-    </div>
+<div class="vert">
+        <label for="input_place"></label>
+        <input id="input_place" class="placeInput"
+               placeholder="Поиск локации" onkeydown="getPlaces()">
+    <ul id="hit_list" class="placeSuggestionList" hidden></ul>
+</div>
+
+<div id="weather_bar" class="weather">
+    <p>Температура: <span id="temperature">*</span> &#8451;</p>
+    <p>Ощущается как: <span id="feels_like">*</span> &#8451;</p>
+    <p>Влажность: <span id="humidity">*</span> %</p>
+    <p>Давление: <span id="pressure">*</span> мм рт ст</p>
+
+</div>
 
 </body>
 </html>

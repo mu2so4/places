@@ -80,3 +80,8 @@ aside {
     background-color: greenyellow;
     color: black;
 }
+
+.weather {
+    padding: 0;
+    margin: 0;
+}
