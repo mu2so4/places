@@ -26,6 +26,8 @@ aside {
     width: 500px;
     list-style-type: none;
     border: dashed;
+    position: absolute;
+    background-color: #eee;
     border-radius: 25px;
     padding-left: 0;
     padding-top: 6px;
