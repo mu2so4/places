@@ -15,40 +15,7 @@ function getPlaces() {
         if (http.readyState === 4 && http.status === 200) {
             clearPlaceHints()
             const response = JSON.parse(http.response)
-            for(let index = 0; index <= response.hits.length - 1; index++) {
-                const entry = document.createElement('li');
-                entry.className = suggestionClassName
-                const suggestion = response.hits[index]
-
-                const locationName = suggestion.name
-                const fullNamePar = document.createElement('p')
-                fullNamePar.className = 'placeFullName'
-                fullNamePar.textContent = locationName
-                entry.appendChild(fullNamePar)
-
-                const regionPar = document.createElement('p')
-                regionPar.className = 'regionFullName'
-                let region = ''
-                if(suggestion.city !== undefined) {
-                    region += suggestion.city + ', '
-                }
-                if(suggestion.state !== undefined) {
-                    region += suggestion.state + ', '
-                }
-                region += suggestion.country
-                regionPar.textContent = region
-                entry.appendChild(regionPar)
-
-                const coordsPar = document.createElement('p')
-                coordsPar.className = 'coordsSuggestion'
-                const coords = parseFloat(suggestion.point.lat).toFixed(4) +
-                    ', ' + parseFloat(suggestion.point.lng).toFixed(4)
-                coordsPar.textContent = coords
-                entry.appendChild(coordsPar)
-
-                hitList.appendChild(entry)
-            }
-            hitList.hidden = false
+            onTyping(response, hitList)
         }
     }
     const url = 'https://graphhopper.com/api/1/geocode?q=' + placeInput +
@@ -59,7 +26,51 @@ function getPlaces() {
 
 function clearPlaceHints() {
     const items = document.getElementsByClassName(suggestionClassName)
-    for(let index = 0; index <= items.length -1; index++) {
+    for(let index = 0; index <= items.length - 1; index++) {
         items[index].remove()
     }
+}
+
+function onTyping(response, hitList) {
+    for(let index = 0; index <= response.hits.length - 1; index++) {
+        const entry = document.createElement('li');
+        entry.className = suggestionClassName
+        const suggestion = response.hits[index]
+
+        const locationName = suggestion.name
+        const fullNamePar = document.createElement('p')
+        fullNamePar.className = 'placeFullName'
+        fullNamePar.textContent = locationName
+        entry.appendChild(fullNamePar)
+
+        const regionPar = document.createElement('p')
+        regionPar.className = 'regionFullName'
+        let region = ''
+        if(suggestion.city !== undefined) {
+            region += suggestion.city + ', '
+        }
+        if(suggestion.state !== undefined) {
+            region += suggestion.state + ', '
+        }
+        region += suggestion.country
+        regionPar.textContent = region
+        entry.appendChild(regionPar)
+
+        const coordsPar = document.createElement('p')
+        coordsPar.className = 'coordsSuggestion'
+        coordsPar.textContent = parseFloat(suggestion.point.lat).
+        toFixed(4) + ', ' + parseFloat(suggestion.point.lng).
+        toFixed(4)
+        entry.appendChild(coordsPar)
+
+        entry.addEventListener('click', function () {
+            hitList.hidden = true
+            onItemClickListener(suggestion.point.lat, suggestion.point.lng)
+        }, false)
+
+        hitList.appendChild(entry)
+    }
+    hitList.hidden = false
+}
+
 }
