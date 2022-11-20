@@ -12,7 +12,13 @@
     <label for="input_place"></label>
     <input id="input_place">
 
-    <button id="button_find_place">Поиск</button>
+    <script>
+        function onClick() {
+            alert(document.getElementById('input_place').value)
+        }
+    </script>
+
+    <button id="button_find_place" onclick="onClick()">Поиск</button>
 
 </body>
 </html>
