@@ -66,10 +66,7 @@ function blurLocationInput() {
 }
 
 function clearLocationHints() {
-    const items = document.getElementsByClassName(suggestionClassName)
-    for(let index = 0; index <= items.length - 1; index++) {
-        items[index].remove()
-    }
+    document.getElementById('hit_list').innerHTML = ''
 }
 
 function onTyping(response, hitList) {

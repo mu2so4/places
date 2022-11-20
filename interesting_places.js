@@ -34,10 +34,7 @@ function getInterestingPlaces(response) {
 }
 
 function clearPlaces() {
-    const items = document.getElementsByClassName(placeItemClassName)
-    for(let index = 0; index <= items.length - 1; index++) {
-        items[index].remove()
-    }
+    document.getElementById('place_list').innerHTML = ''
 }
 
 function getPlaceDescription(response, placeItem) {
