@@ -13,12 +13,13 @@
     <div class="vert">
         <div>
             <label for="input_place"></label>
-            <input id="input_place" placeholder="Поиск локации" onkeydown="getPlaces()">
+            <input id="input_place" class="placeInput"
+                   placeholder="Поиск локации" onkeydown="getPlaces()">
 
             <!--<button id="button_find_place" class="placeSearchButton"
                     onclick="getPlaces()">Поиск</button>-->
         </div>
-        <ul id="hit_list" hidden></ul>
+        <ul id="hit_list" class="placeSuggestionList" hidden></ul>
     </div>
 
 </body>

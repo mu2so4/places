@@ -21,3 +21,35 @@ main {
 aside {
     background: #eee;
 }
+
+.placeSuggestionList {
+    width: 400px;
+    list-style-type: none;
+    border: dashed;
+    border-radius: 25px;
+    padding-left: 0;
+    margin-left: 40px;
+}
+
+.placeSuggestion {
+    font-size: 20px;
+    padding: 5px;
+}
+
+.placeInput {
+    width: 550px;
+    height: 30px;
+    border-radius: 25px;
+    font-size: 20px;
+    padding-left: 8px;
+    margin-left: 40px;
+}
+
+.placeSearchButton {
+    width: 80px;
+    height: 35px;
+    border-radius: 25px;
+    font-size: 20px;
+    background-color: greenyellow;
+    color: black;
+}
