@@ -18,7 +18,9 @@ function getPlaces() {
             for(let index = 0; index <= response.hits.length - 1; index++) {
                 const entry = document.createElement('li');
                 entry.className = suggestionClassName
-                entry.appendChild(document.createTextNode(response.hits[index].name));
+                const suggestion = response.hits[index]
+                const value = suggestion.name + ', ' + suggestion.country
+                entry.appendChild(document.createTextNode(value));
                 hitList.appendChild(entry)
             }
             hitList.hidden = false
