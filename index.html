@@ -8,18 +8,19 @@
 </head>
 <body>
     <script type="text/javascript" src="click_handlers.js"></script>
-
     <h1>Поиск интересных мест</h1>
 
-    <label for="input_place"></label>
-    <input id="input_place">
+    <div class="vert">
+        <div>
+            <label for="input_place"></label>
+            <input id="input_place" placeholder="Введите локацию" onkeydown="getPlacesOnClick()">
 
-    <button id="button_find_place" onclick="getPlacesOnClick()">Поиск</button>
+            <button id="button_find_place" onclick="getPlacesOnClick()">Поиск</button>
+        </div>
 
-    <label for="response_area"></label>
-    <textarea id="response_area"></textarea>
-
-
+        <label for="response_area"></label>
+        <textarea id="response_area" contenteditable="false" readonly></textarea>
+    </div>
 
 </body>
 </html>
