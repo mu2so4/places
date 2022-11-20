@@ -6,15 +6,17 @@
     <link rel="stylesheet" href="style.css">
     <title>Геознаток</title>
 </head>
-<body>
-<script type="text/javascript" src="click_handlers.js"></script>
-<h1>Поиск интересных мест</h1>
 
+<body>
+<script type="text/javascript" src="place_suggestions.js"></script>
+<script type="text/javascript" src="weather.js"></script>
+
+<h1>Поиск интересных мест</h1>
 <div>
         <label for="input_place"></label>
         <input id="input_place" class="placeInput"
                placeholder="Поиск локации" onkeyup="getPlaces()"
-               onfocus="onSelect()" onblur="onUnselect()"
+               onfocus="focusOnPlaceInput()" onblur="blurPlaceInput()"
         >
     <ul id="hit_list" class="placeSuggestionList" hidden></ul>
 </div>
