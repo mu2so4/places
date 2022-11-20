@@ -48,5 +48,6 @@ function getPlaceDescription(response, placeItem) {
     const link = document.createElement('a')
     link.href = response.wikipedia
     link.textContent = 'Источник'
+    link.target = '_blank'
     placeItem.appendChild(link)
 }
