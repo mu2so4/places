@@ -4,21 +4,16 @@
     <meta charset="UTF-8">
     <link rel="shortcut icon" href="img/icon.png">
     <link rel="stylesheet" href="style.css">
-    <title>Title</title>
+    <title>Геознаток</title>
 </head>
 <body>
     <script type="text/javascript" src="click_handlers.js"></script>
     <h1>Поиск интересных мест</h1>
 
     <div class="vert">
-        <div>
             <label for="input_place"></label>
             <input id="input_place" class="placeInput"
                    placeholder="Поиск локации" onkeydown="getPlaces()">
-
-            <!--<button id="button_find_place" class="placeSearchButton"
-                    onclick="getPlaces()">Поиск</button>-->
-        </div>
         <ul id="hit_list" class="placeSuggestionList" hidden></ul>
     </div>
 

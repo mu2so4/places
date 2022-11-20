@@ -19,8 +19,33 @@ function getPlaces() {
                 const entry = document.createElement('li');
                 entry.className = suggestionClassName
                 const suggestion = response.hits[index]
-                const value = suggestion.name + ', ' + suggestion.country
-                entry.appendChild(document.createTextNode(value));
+
+                const locationName = suggestion.name
+                const fullNamePar = document.createElement('p')
+                fullNamePar.className = 'placeFullName'
+                fullNamePar.textContent = locationName
+                entry.appendChild(fullNamePar)
+
+                const regionPar = document.createElement('p')
+                regionPar.className = 'regionFullName'
+                let region = ''
+                if(suggestion.city !== undefined) {
+                    region += suggestion.city + ', '
+                }
+                if(suggestion.state !== undefined) {
+                    region += suggestion.state + ', '
+                }
+                region += suggestion.country
+                regionPar.textContent = region
+                entry.appendChild(regionPar)
+
+                const coordsPar = document.createElement('p')
+                coordsPar.className = 'coordsSuggestion'
+                const coords = parseFloat(suggestion.point.lat).toFixed(4) +
+                    ', ' + parseFloat(suggestion.point.lng).toFixed(4)
+                coordsPar.textContent = coords
+                entry.appendChild(coordsPar)
+
                 hitList.appendChild(entry)
             }
             hitList.hidden = false
