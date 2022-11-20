@@ -25,17 +25,30 @@ function getPlaces() {
 }
 
 function onItemClickListener(latitude, longitude) {
-    const http = new XMLHttpRequest()
-    http.onreadystatechange = function() {
-        if(http.readyState === 4 && http.status === 200) {
-            const response = JSON.parse(http.response)
+    const weatherRequest = new XMLHttpRequest()
+    weatherRequest.onreadystatechange = function() {
+        if(weatherRequest.readyState === 4 && weatherRequest.status === 200) {
+            const response = JSON.parse(weatherRequest.response)
             getWeather(response)
         }
     }
-    const url = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}`+
+    const weatherUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}`+
         `&lon=${longitude}&units=metric&lang=ru&appid=afab9125bd210e10cb512ce5631fbf50`
-    http.open("GET", url)
-    http.send()
+
+    const placeRequest = new XMLHttpRequest()
+    placeRequest.onreadystatechange = function() {
+        if(placeRequest.readyState === 4 && placeRequest.status === 200) {
+            document.getElementById('interesting').textContent = placeRequest.response
+        }
+    }
+    const placeUrl = 'https://api.opentripmap.com/0.1/ru/places/radius?radius=10000&' +
+        `lat=${latitude}&lon=${longitude}&rate=3&limit=20&` +
+        'apikey=5ae2e3f221c38a28845f05b6ac6a5e25ba4d1cb33d0a32e7a13b8225'
+
+    weatherRequest.open("GET", weatherUrl)
+    placeRequest.open("GET", placeUrl)
+    weatherRequest.send()
+    placeRequest.send()
     document.getElementById('input_place').value = ''
 }
 
