@@ -10,14 +10,16 @@
 <script type="text/javascript" src="click_handlers.js"></script>
 <h1>Поиск интересных мест</h1>
 
-<div class="vert">
+<div>
         <label for="input_place"></label>
         <input id="input_place" class="placeInput"
-               placeholder="Поиск локации" onkeydown="getPlaces()">
+               placeholder="Поиск локации" onkeyup="getPlaces()"
+               onfocus="onSelect()" onblur="onUnselect()"
+        >
     <ul id="hit_list" class="placeSuggestionList" hidden></ul>
 </div>
 
-<div id="weather_bar" class="vert">
+<div id="weather_bar" hidden>
     <h2>Погода</h2>
     <h3><span id="weather_city_name"></span></h3>
     <div class="weather">

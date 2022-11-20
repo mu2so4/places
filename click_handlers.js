@@ -36,6 +36,18 @@ function onItemClickListener(latitude, longitude) {
         `&lon=${longitude}&units=metric&lang=ru&appid=afab9125bd210e10cb512ce5631fbf50`
     http.open("GET", url)
     http.send()
+    document.getElementById('input_place').value = ''
+}
+
+function onSelect() {
+    document.getElementById('hit_list').hidden =
+        document.getElementById('input_place').value.length < 2
+}
+
+function onUnselect() {
+    setTimeout(function() {
+        document.getElementById('hit_list').hidden = true
+    }, 60)
 }
 
 function clearPlaceHints() {
@@ -106,4 +118,5 @@ function getWeather(response) {
     const icon = document.getElementById('weather_icon')
     icon.src = `https://openweathermap.org/img/wn/${response.weather[0].icon}@2x.png`
     icon.alt = response.weather[0].description
+    document.getElementById('weather_bar').hidden = false
 }
