@@ -7,18 +7,19 @@
     <title>Title</title>
 </head>
 <body>
+    <script type="text/javascript" src="click_handlers.js"></script>
+
     <h1>Поиск интересных мест</h1>
 
     <label for="input_place"></label>
     <input id="input_place">
 
-    <script>
-        function onClick() {
-            alert(document.getElementById('input_place').value)
-        }
-    </script>
+    <button id="button_find_place" onclick="getPlacesOnClick()">Поиск</button>
 
-    <button id="button_find_place" onclick="onClick()">Поиск</button>
+    <label for="response_area"></label>
+    <textarea id="response_area"></textarea>
+
+
 
 </body>
 </html>
