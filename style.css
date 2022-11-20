@@ -84,4 +84,14 @@ aside {
 .weather {
     padding: 0;
     margin: 0;
+    display: inline-flex;
+}
+
+.weatherData {
+    margin: 4px;
+    font-family: Verdana, sans-serif;
+}
+
+.weatherList {
+    list-style-type: none;
 }
