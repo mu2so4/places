@@ -103,5 +103,13 @@ aside {
 }
 
 .placeItem {
+    background-color: lightblue;
+    border-radius: 15px;
+    margin-bottom: 20px;
+    padding: 8px 16px;
+}
 
+.placeHeader {
+    padding-top: 0;
+    font-family: "Cantarell Extra Bold", sans-serif;
 }
