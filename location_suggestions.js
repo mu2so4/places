@@ -51,7 +51,7 @@ function onLocationClick(latitude, longitude) {
     placeRequest.open("GET", placeUrl)
     weatherRequest.send()
     placeRequest.send()
-    document.getElementById('input_place').value = ''
+    document.getElementById('input_location').value = ''
 }
 
 function focusOnLocationInput() {
