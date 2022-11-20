@@ -38,11 +38,13 @@ function onLocationClick(latitude, longitude) {
     const placeRequest = new XMLHttpRequest()
     placeRequest.onreadystatechange = function() {
         if(placeRequest.readyState === 4 && placeRequest.status === 200) {
-            document.getElementById('interesting').textContent = placeRequest.response
+            const response = placeRequest.response
+            getInterestingPlaces(JSON.parse(response))
         }
     }
+    const categories = 'natural'
     const placeUrl = 'https://api.opentripmap.com/0.1/ru/places/radius?radius=10000&' +
-        `lat=${latitude}&lon=${longitude}&rate=3&limit=20&` +
+        `lat=${latitude}&lon=${longitude}&rate=3&limit=20&kinds=${categories}&` +
         'apikey=5ae2e3f221c38a28845f05b6ac6a5e25ba4d1cb33d0a32e7a13b8225'
 
     weatherRequest.open("GET", weatherUrl)
