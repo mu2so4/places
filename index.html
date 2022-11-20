@@ -13,12 +13,12 @@
 
 <h1>Поиск интересных мест</h1>
 <div>
-        <label for="input_place"></label>
-        <input id="input_place" class="placeInput"
-               placeholder="Поиск локации" onkeyup="getPlaces()"
-               onfocus="focusOnPlaceInput()" onblur="blurPlaceInput()"
+        <label for="input_location"></label>
+        <input id="input_location" class="placeInput"
+               placeholder="Поиск локации" onkeyup="getLocations()"
+               onfocus="focusOnLocationInput()" onblur="blurLocationInput()"
         >
-    <ul id="hit_list" class="placeSuggestionList" hidden></ul>
+    <ul id="hit_list" class="locationSuggestionList" hidden></ul>
 </div>
 
 <div id="weather_bar" hidden>
@@ -41,7 +41,8 @@
 </div>
 
 <div>
-    <textarea id="interesting"></textarea>
+    <h2>Интересные места поблизости</h2>
+    <ul id="place_list" hidden></ul>
 </div>
 
 </body>

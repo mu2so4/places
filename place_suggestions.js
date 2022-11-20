@@ -1,11 +1,11 @@
-const suggestionClassName = 'placeSuggestion'
+const suggestionClassName = 'locationSuggestion'
 
-function getPlaces() {
-    const placeInput = document.getElementById('input_place').value
+function getLocations() {
+    const locationInput = document.getElementById('input_location').value
     const hitList = document.getElementById('hit_list')
 
-    if(placeInput.length < 2) {
-        clearPlaceHints()
+    if(locationInput.length < 2) {
+        clearLocationHints()
         hitList.hidden = true
         return
     }
@@ -13,18 +13,18 @@ function getPlaces() {
     const http = new XMLHttpRequest()
     http.onreadystatechange = function() {
         if (http.readyState === 4 && http.status === 200) {
-            clearPlaceHints()
+            clearLocationHints()
             const response = JSON.parse(http.response)
             onTyping(response, hitList)
         }
     }
-    const url = 'https://graphhopper.com/api/1/geocode?q=' + placeInput +
+    const url = 'https://graphhopper.com/api/1/geocode?q=' + locationInput +
         '&key=69f3bd9d-95bf-4292-a4eb-159ac244774a'
     http.open("GET", url)
     http.send()
 }
 
-function onItemClickListener(latitude, longitude) {
+function onLocationClick(latitude, longitude) {
     const weatherRequest = new XMLHttpRequest()
     weatherRequest.onreadystatechange = function() {
         if(weatherRequest.readyState === 4 && weatherRequest.status === 200) {
@@ -52,18 +52,18 @@ function onItemClickListener(latitude, longitude) {
     document.getElementById('input_place').value = ''
 }
 
-function focusOnPlaceInput() {
+function focusOnLocationInput() {
     document.getElementById('hit_list').hidden =
         document.getElementById('input_place').value.length < 2
 }
 
-function blurPlaceInput() {
+function blurLocationInput() {
     setTimeout(function() {
         document.getElementById('hit_list').hidden = true
     }, 80)
 }
 
-function clearPlaceHints() {
+function clearLocationHints() {
     const items = document.getElementsByClassName(suggestionClassName)
     for(let index = 0; index <= items.length - 1; index++) {
         items[index].remove()
@@ -78,7 +78,7 @@ function onTyping(response, hitList) {
 
         const locationName = suggestion.name
         const fullNamePar = document.createElement('p')
-        fullNamePar.className = 'placeFullName'
+        fullNamePar.className = 'locationFullName'
         fullNamePar.textContent = locationName
         entry.appendChild(fullNamePar)
 
@@ -104,7 +104,7 @@ function onTyping(response, hitList) {
 
         entry.addEventListener('click', function () {
             hitList.hidden = true
-            onItemClickListener(suggestion.point.lat, suggestion.point.lng)
+            onLocationClick(suggestion.point.lat, suggestion.point.lng)
         }, false)
 
         hitList.appendChild(entry)
