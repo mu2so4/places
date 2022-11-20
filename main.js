@@ -13,6 +13,7 @@ function createWindow () {
   })
 
   // and load the index.html of the app.
+  mainWindow.resizable = false;
   mainWindow.loadFile('index.html')
 
   // Open the DevTools.
