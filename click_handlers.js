@@ -1,26 +1,38 @@
+const suggestionClassName = 'placeSuggestion'
+
 function getPlaces() {
     const placeInput = document.getElementById('input_place').value
-    const textArea = document.getElementById('response_area')
+    const hitList = document.getElementById('hit_list')
 
     if(placeInput.length < 2) {
-        textArea.value = ''
+        clearPlaceHints()
+        hitList.hidden = true
         return
     }
 
     const http = new XMLHttpRequest()
     http.onreadystatechange = function() {
         if (http.readyState === 4 && http.status === 200) {
-            textArea.value = http.response
+            clearPlaceHints()
             const response = JSON.parse(http.response)
-            let cities = ''
             for(let index = 0; index <= response.hits.length - 1; index++) {
-                cities += response.hits[index].name + '\n'
+                const entry = document.createElement('li');
+                entry.className = suggestionClassName
+                entry.appendChild(document.createTextNode(response.hits[index].name));
+                hitList.appendChild(entry)
             }
-            textArea.value = cities
+            hitList.hidden = false
         }
     }
     const url = 'https://graphhopper.com/api/1/geocode?q=' + placeInput +
         '&key=69f3bd9d-95bf-4292-a4eb-159ac244774a'
     http.open("GET", url)
     http.send()
+}
+
+function clearPlaceHints() {
+    const items = document.getElementsByClassName(suggestionClassName)
+    for(let index = 0; index <= items.length -1; index++) {
+        items[index].remove()
+    }
 }
