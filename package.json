@@ -8,7 +8,7 @@
   },
   "keywords": [],
   "author": "Maxim Muratov",
-  "license": "ISC",
+  "license": "MIT",
   "devDependencies": {
     "electron": "^21.3.0"
   }

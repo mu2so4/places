@@ -1,0 +1,118 @@
+body {
+    margin-left: 40px;
+    padding: 0;
+    max-width: inherit;
+    background: #fff;
+    color: #4a4a4a;
+}
+header, footer {
+    font-size: large;
+    text-align: center;
+    padding: 0.3em 0;
+    background-color: #4a4a4a;
+    color: #f9f9f9;
+}
+nav {
+    background: #eee;
+}
+main {
+    background: #f9f9f9;
+}
+aside {
+    background: #eee;
+}
+
+.locationSuggestionList {
+    width: 500px;
+    list-style-type: none;
+    border: dashed;
+    position: absolute;
+    background-color: #eee;
+    border-radius: 25px;
+    padding-left: 0;
+    padding-top: 6px;
+    padding-bottom: 6px;
+}
+
+.locationSuggestion, .locationSuggestionError {
+    padding: 0 0 0 12px;
+}
+
+.locationSuggestion {
+    font-size: 20px;
+    margin-left: 8px;
+    margin-right: 8px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.locationFullName {
+    padding: 0;
+    margin: 0;
+}
+
+.regionFullName {
+    font-size: 15px;
+    padding: 0;
+    margin: 0;
+}
+
+.coordsSuggestion {
+    color: darkgrey;
+    font-size: 15px;
+    margin: 0;
+    padding: 0;
+}
+
+.locationSuggestion:hover {
+    background-color: lightgreen;
+    border-radius: 25px;
+}
+
+.placeInput {
+    width: 550px;
+    height: 30px;
+    border-radius: 25px;
+    font-size: 20px;
+    padding-left: 20px;
+}
+
+.placeSearchButton {
+    width: 80px;
+    height: 35px;
+    border-radius: 25px;
+    font-size: 20px;
+    background-color: greenyellow;
+    color: black;
+}
+
+.weather {
+    padding: 0;
+    margin: 0;
+    display: inline-flex;
+}
+
+.weatherData {
+    margin: 4px;
+    font-family: Verdana, sans-serif;
+}
+
+.weatherList {
+    list-style-type: none;
+}
+
+.placeList {
+    list-style-type: none;
+}
+
+.placeItem {
+    background-color: lightblue;
+    border-radius: 15px;
+    margin-bottom: 20px;
+    padding: 8px 16px;
+}
+
+.placeHeader {
+    padding-top: 0;
+    font-family: "Cantarell Extra Bold", sans-serif;
+}

@@ -1,12 +1,54 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <link rel="shortcut icon" href="img/icon.png">
+    <link rel="stylesheet" href="style.css">
+    <title>Геознаток</title>
 </head>
-<body>
 
-<p>This is the text</p>
+<body>
+<script type="text/javascript" src="location_suggestions.js"></script>
+<script type="text/javascript" src="weather.js"></script>
+<script type="text/javascript" src="interesting_places.js"></script>
+
+<h1>Поиск интересных мест</h1>
+<div>
+        <label for="input_location"></label>
+        <input id="input_location" class="placeInput"
+               placeholder="Поиск локации" onkeyup="getLocations()"
+               onfocus="focusOnLocationInput()" onblur="blurLocationInput()"
+        >
+    <ul id="hit_list" class="locationSuggestionList" hidden></ul>
+</div>
+
+<p id="weather_error_message" hidden>Страшная ошибка</p>
+
+<div id="weather_bar" hidden>
+    <h2>Погода</h2>
+    <h3><span id="weather_city_name"></span></h3>
+    <div class="weather">
+        <img src="https://openweathermap.org/img/wn/01d@2x.png" alt="Ясно"
+            id="weather_icon">
+        <ul class="weatherList">
+            <li class="weatherData">Температура: <span id="temperature">*</span> &#8451;</li>
+            <li class="weatherData">Ощущается как: <span id="feels_like">*</span> &#8451;</li>
+            <li class="weatherData">Влажность: <span id="humidity">*</span> %</li>
+        </ul>
+        <ul class="weatherList">
+            <li class="weatherData">Давление: <span id="pressure">*</span> мм рт ст</li>
+            <li class="weatherData">Ветер: <span id="wind_speed">*</span> м/с,
+                <span id="wind_dir">*</span></li>
+        </ul>
+    </div>
+</div>
+
+<div id="interesting_places" hidden>
+    <h2>Интересные места поблизости</h2>
+    <p id="place_data_source">Описания мест взяты из Википедии.</p>
+    <p id="place_data_error" hidden>Страшная ошибка</p>
+    <ul id="place_list" class="placeList"></ul>
+</div>
 
 </body>
 </html>
