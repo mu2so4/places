@@ -18,4 +18,5 @@ function getWeather(response) {
     icon.src = `https://openweathermap.org/img/wn/${response.weather[0].icon}@2x.png`
     icon.alt = response.weather[0].description
     document.getElementById('weather_bar').hidden = false
+    document.getElementById('weather_error_message').hidden = true
 }

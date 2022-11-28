@@ -37,9 +37,19 @@ function getLocations() {
 function onLocationClick(latitude, longitude) {
     const weatherRequest = new XMLHttpRequest()
     weatherRequest.onreadystatechange = function() {
-        if(weatherRequest.readyState === 4 && weatherRequest.status === 200) {
-            const response = JSON.parse(weatherRequest.response)
-            getWeather(response)
+        if(weatherRequest.readyState === 4) {
+            const json = weatherRequest.response
+            const response = JSON.parse(json)
+            if(weatherRequest.status === 200) {
+                getWeather(response)
+            }
+            else if(weatherRequest.status >= 400) {
+                document.getElementById('weather_bar').hidden = true
+                const entry = document.getElementById('weather_error_message')
+                entry.textContent = `Error ${response.cod}: ${response.message}`
+                entry.hidden = false
+                console.error(json)
+            }
         }
     }
     const weatherUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}`+
