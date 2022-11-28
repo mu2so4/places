@@ -16,10 +16,18 @@ function getInterestingPlaces(response) {
 
         const descriptionRequest = new XMLHttpRequest()
         descriptionRequest.onreadystatechange = () => {
-            if(descriptionRequest.readyState === 4 &&
-                descriptionRequest.status === 200) {
-                const response = descriptionRequest.response
-                getPlaceDescription(JSON.parse(response), entry)
+            if(descriptionRequest.readyState === 4) {
+                const json = descriptionRequest.response
+                const response = JSON.parse(json)
+                if(descriptionRequest.status === 200) {
+                    getPlaceDescription(response, entry)
+                }
+                else if(descriptionRequest.status >= 400) {
+                    const msg = document.createElement('p')
+                    msg.textContent = `opentripmap.io: ${response.error}`
+                    entry.appendChild(msg)
+                    console.error(json)
+                }
             }
         }
 
