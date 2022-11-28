@@ -11,10 +11,11 @@ function getLocations() {
     }
 
     const http = new XMLHttpRequest()
-    http.onreadystatechange = function() {
+    http.onreadystatechange = () => {
         if (http.readyState === 4) {
             clearLocationHints()
-            const response = JSON.parse(http.response)
+            const json = http.response
+            const response = JSON.parse(json)
             if(http.status === 200) {
                 onTyping(response, hitList)
             }
@@ -25,6 +26,7 @@ function getLocations() {
                 entry.appendChild(document.createTextNode(msg))
                 hitList.appendChild(entry)
                 hitList.hidden = false
+                console.error(json)
             }
         }
     }
