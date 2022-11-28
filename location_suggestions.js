@@ -38,7 +38,7 @@ function getLocations() {
 
 function onLocationClick(latitude, longitude) {
     const weatherRequest = new XMLHttpRequest()
-    weatherRequest.onreadystatechange = function() {
+    weatherRequest.onreadystatechange = () => {
         if(weatherRequest.readyState === 4) {
             const json = weatherRequest.response
             const response = JSON.parse(json)
@@ -58,10 +58,22 @@ function onLocationClick(latitude, longitude) {
         `&lon=${longitude}&units=metric&lang=ru&appid=afab9125bd210e10cb512ce5631fbf50`
 
     const placeRequest = new XMLHttpRequest()
-    placeRequest.onreadystatechange = function() {
-        if(placeRequest.readyState === 4 && placeRequest.status === 200) {
-            const response = placeRequest.response
-            getInterestingPlaces(JSON.parse(response))
+    placeRequest.onreadystatechange = () => {
+        if(placeRequest.readyState === 4) {
+            const json = placeRequest.response
+            const response = JSON.parse(json)
+            document.getElementById('interesting_places').hidden = false
+            if(placeRequest.status === 200) {
+                getInterestingPlaces(response)
+            }
+            else if(placeRequest.status >= 400) {
+                document.getElementById('place_data_source').hidden = true
+                document.getElementById('place_list').hidden = true
+                const error_entry = document.getElementById('place_data_error')
+                error_entry.textContent = `${response.error}`
+                error_entry.hidden = false
+                console.error(json)
+            }
         }
     }
     const categories = 'natural,religion,historic,cultural,architecture'

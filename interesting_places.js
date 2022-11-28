@@ -15,7 +15,7 @@ function getInterestingPlaces(response) {
         placeList.appendChild(entry)
 
         const descriptionRequest = new XMLHttpRequest()
-        descriptionRequest.onreadystatechange = function() {
+        descriptionRequest.onreadystatechange = () => {
             if(descriptionRequest.readyState === 4 &&
                 descriptionRequest.status === 200) {
                 const response = descriptionRequest.response
@@ -30,7 +30,9 @@ function getInterestingPlaces(response) {
         descriptionRequest.send()
     }
 
-    document.getElementById('interesting_places').hidden = false
+    document.getElementById('place_data_source').hidden = false
+    document.getElementById('place_list').hidden = false
+    document.getElementById('place_data_error').hidden = true
 }
 
 function clearPlaces() {
