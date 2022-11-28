@@ -12,13 +12,23 @@ function getLocations() {
 
     const http = new XMLHttpRequest()
     http.onreadystatechange = function() {
-        if (http.readyState === 4 && http.status === 200) {
+        if (http.readyState === 4) {
             clearLocationHints()
             const response = JSON.parse(http.response)
-            onTyping(response, hitList)
+            if(http.status === 200) {
+                onTyping(response, hitList)
+            }
+            else if(http.status >= 400) {
+                const msg = `Error ${http.status}: ${response.message}`
+                const entry = document.createElement('li');
+                entry.className = 'locationSuggestionError'
+                entry.appendChild(document.createTextNode(msg))
+                hitList.appendChild(entry)
+                hitList.hidden = false
+            }
         }
     }
-    const url = 'https://graphhopper.com/api/1/geocode?q=' + locationInput +
+    const url = `https://graphhopper.com/api/1/geocode?q=${locationInput}` +
         '&key=69f3bd9d-95bf-4292-a4eb-159ac244774a'
     http.open("GET", url)
     http.send()
@@ -70,7 +80,12 @@ function clearLocationHints() {
 }
 
 function onTyping(response, hitList) {
-    for(let index = 0; index <= response.hits.length - 1; index++) {
+    const locationCount = response.hits.length
+    if(locationCount === 0) {
+        hitList.hidden = true
+        return
+    }
+    for(let index = 0; index <= locationCount - 1; index++) {
         const entry = document.createElement('li');
         entry.className = suggestionClassName
         const suggestion = response.hits[index]
